@@ -186,6 +186,7 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RessourceInformation.cpp" />
     <ClCompile Include="UnitCollisions.cpp" />
+    <ClCompile Include="UnitMovement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ImGui\imconfig.h" />
@@ -209,6 +210,7 @@
     <ClInclude Include="RessourceInformation.h" />
     <ClInclude Include="Sdk.h" />
     <ClInclude Include="UnitCollisions.h" />
+    <ClInclude Include="UnitMovement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

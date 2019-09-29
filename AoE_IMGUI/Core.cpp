@@ -16,12 +16,14 @@
 
 //Features
 #include "UnitCollisions.h"
+#include "UnitMovement.h"
 #include "Maphack.h"
 #include "RessourceInformation.h"
 
 Core::Core()
 {
 	FeatureManager::Get()->registerFeature(new UnitCollisions());
+	FeatureManager::Get()->registerFeature(new UnitMovement());
 	FeatureManager::Get()->registerFeature(new Maphack());
 	FeatureManager::Get()->registerFeature(new RessourceInformation());
 

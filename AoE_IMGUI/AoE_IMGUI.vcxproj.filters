@@ -45,6 +45,9 @@
     <ClCompile Include="RessourceInformation.cpp">
       <Filter>Source Files\Features</Filter>
     </ClCompile>
+    <ClCompile Include="UnitMovement.cpp">
+      <Filter>Source Files\Features</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ImGui\imconfig.h">
@@ -108,6 +111,9 @@
       <Filter>Header Files\Features</Filter>
     </ClInclude>
     <ClInclude Include="RessourceInformation.h">
+      <Filter>Header Files\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitMovement.h">
       <Filter>Header Files\Features</Filter>
     </ClInclude>
   </ItemGroup>

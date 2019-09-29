@@ -11,10 +11,12 @@
 #include "../ImGui/imgui_impl_win32.h"
 
 #include "DetourHook.h"
-#include "Hack.h"
+#include "Core.h"
+#include "FeatureManager.h"
 
 
 const char* windowName = "Age of Empires II: HD Edition"; 
+Core* core = new Core();
 
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -49,7 +51,8 @@ HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9 * pDevice) // Our hooked ends
 
 	ImGuiIO& io = ImGui::GetIO();
 
-	RunHack();
+	
+	core->OnEndscene();
 
 	ImGui::EndFrame();
 	ImGui::Render();
@@ -128,6 +131,7 @@ DWORD WINAPI MainThread(LPVOID param)
 		Sleep(1);
 	}
 
+	FeatureManager::Get()->OnShutdown();
 	//Restore hooks and end thread
 	(WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)oWndProc);
 	endsceneHook.Unhook();

@@ -61,6 +61,11 @@ Vector2 worldToScreen(Unit* unit)
 	return worldToScreen(unit->vPos);
 }
 
+Vector2 worldToScreen(Vector2 position)
+{
+	return worldToScreen(Vector3(position.x, 0, position.y));
+}
+
 std::vector<Unit*> getIdleCivilianList(Player* player)
 {
 	std::vector<Unit*> civilian = getCivilianList(player);

@@ -39,7 +39,7 @@ void createPlayerTreeNode(Player* player)
 					ImGui::Text("%x", unit);
 					ImGui::SameLine();
 					ImGui::Text("%s", unit->pUnitData->name);
-		
+
 					if (unit->pUnitData->Class == EnumUnitDataClass::Building)
 					{
 						buildingCount++;
@@ -83,10 +83,29 @@ void Esp()
 			{
 				continue;
 			}
-			
+			int toto;
+			int tata;
 			Vector2 screenPosition = worldToScreen(unit);
 			Renderer::Get()->RenderCircle(ImVec2(screenPosition.x, screenPosition.y), 7, 0xffffffff, 1, 20);
 			Renderer::Get()->RenderText(unit->pUnitData->name, ImVec2(screenPosition.x, screenPosition.y), 16, 0xffff0000, true);
+			if (unit->mileage > 0 && unit->fHealth > 0)
+			{
+				if (unit->pTarget != nullptr)
+				{
+					if (unit->pTarget->pTarget != nullptr)
+					{
+						if (unit->pTarget->pTarget->pTargetData != nullptr)
+						{
+							Vector2 destGamePos = unit->pTarget->pTarget->pTargetData->Destination;
+							if (destGamePos.x > 0 && destGamePos.y > 0)
+							{
+								Vector2 destPosition = worldToScreen(destGamePos);
+								Renderer::Get()->RenderLine(ImVec2(screenPosition.x, screenPosition.y), ImVec2(destPosition.x, destPosition.y), 0xffffffff, 0.5f);
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 	Renderer::Get()->EndScene();
@@ -97,7 +116,7 @@ void RunHack()
 {
 	static Main* main = reinterpret_cast<Main*>((DWORD)GetModuleHandle(NULL) + Offsets::main);
 	static int totalPlayers = *reinterpret_cast<int*>((DWORD)GetModuleHandle(NULL) + Offsets::totalPlayers);
-	
+
 	static GameData* gameData = main->GameData;
 	static PlayerArray* playerArray = gameData->pPlayerArray;
 
@@ -106,7 +125,7 @@ void RunHack()
 	if (GetAsyncKeyState(VK_INSERT) & 1) { openOverlay = !openOverlay; }
 
 	Esp();
-	
+
 	ImGui::SetNextWindowBgAlpha(0.35f);
 	if (openOverlay)
 	{
@@ -114,7 +133,7 @@ void RunHack()
 		{
 			for (int i = 0; i < totalPlayers; i++)
 			{
-				
+
 				createPlayerTreeNode(playerArray->playerData[i].player);
 			}
 			if (ImGui::TreeNode("Civilian Count"))

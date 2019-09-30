@@ -22,7 +22,7 @@ public:
 	void OnShutdown();
 	void OnDraw();
 	void OnMenuMainWindow();
-	void OnMenuPlayerTreenode(Player* player);
-	void OnPlayerIteration(Player* player);
-	void OnUnitIteration(Unit* unit);
+	void OnMenuPlayerTreenode(Player* player, int playerIndex);
+	void OnPlayerIteration(Player* player, int playerIndex);
+	void OnUnitIteration(Unit* unit, Player * player, int playerIndex);
 };

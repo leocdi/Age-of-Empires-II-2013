@@ -20,17 +20,17 @@ void Feature::OnMenuMainWindow()
 
 }
 
-void Feature::OnMenuPlayerTreenode(Player* player)
+void Feature::OnMenuPlayerTreenode(Player* player, int playerIndex)
 {
 
 }
 
-void Feature::OnPlayerIteration(Player* player)
+void Feature::OnPlayerIteration(Player* player, int playerIndex)
 {
 
 }
 
-void Feature::OnUnitIteration(Unit* unit)
+void Feature::OnUnitIteration(Unit* unit, Player* player, int playerIndex)
 {
 
 }

@@ -30,11 +30,11 @@ Core::Core()
 	FeatureManager::Get()->OnInitialise();
 }
 
-void createPlayerTreeNode(Player* player)
+void createPlayerTreeNode(Player* player, int playerIndex)
 {
 	if (ImGui::TreeNode((char*)player->pName))
 	{
-		FeatureManager::Get()->OnMenuPlayerTreenode(player);
+		FeatureManager::Get()->OnMenuPlayerTreenode(player, playerIndex);
 		if (ImGui::TreeNode("Units"))
 		{
 			int buildingCount = 0;
@@ -96,15 +96,15 @@ void Core::OnEndscene()
 		{
 			continue;
 		}
-		FeatureManager::Get()->OnPlayerIteration(player);
-		for (int i = 0; i < player->objectManager->iObjectCount; i++)
+		FeatureManager::Get()->OnPlayerIteration(player, i);
+		for (int j = 0; j < player->objectManager->iObjectCount; j++)
 		{
-			Unit* unit = player->objectManager->untis[i];
+			Unit* unit = player->objectManager->untis[j];
 			if (!unit)
 			{
 				continue;
 			}
-			FeatureManager::Get()->OnUnitIteration(unit);
+			FeatureManager::Get()->OnUnitIteration(unit, player, i);
 		}
 	}
 	Renderer::Get()->EndScene();
@@ -116,7 +116,7 @@ void Core::OnEndscene()
 		{
 			for (int i = 0; i < totalPlayers; i++)
 			{
-				createPlayerTreeNode(playerArray->playerData[i].player);
+				createPlayerTreeNode(playerArray->playerData[i].player, i);
 			}
 			FeatureManager::Get()->OnMenuMainWindow();
 		}

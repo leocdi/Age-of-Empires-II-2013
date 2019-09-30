@@ -3,6 +3,8 @@
 
 class UnitCollisions : public Feature
 {
-	void OnUnitIteration(Unit* unit);
-	void OnMenuMainWindow();
+	bool playerEsp[8] = { true,true,true,true,true,true,true,true };
+
+	void OnUnitIteration(Unit* unit, Player* player, int playerIndex);
+	void OnMenuPlayerTreenode(Player* player, int playerIndex);
 };

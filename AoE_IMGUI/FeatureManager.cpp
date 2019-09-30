@@ -57,26 +57,26 @@ void FeatureManager::OnMenuMainWindow()
 	}
 }
 
-void FeatureManager::OnMenuPlayerTreenode(Player* player)
+void FeatureManager::OnMenuPlayerTreenode(Player* player, int playerIndex)
 {
 	for (Feature* feature : features)
 	{
-		feature->OnMenuPlayerTreenode(player);
+		feature->OnMenuPlayerTreenode(player, playerIndex);
 	}
 }
 
-void FeatureManager::OnPlayerIteration(Player * player)
+void FeatureManager::OnPlayerIteration(Player * player, int playerIndex)
 {
 	for (Feature* feature : features)
 	{
-		feature->OnPlayerIteration(player);
+		feature->OnPlayerIteration(player, playerIndex);
 	}
 }
 
-void FeatureManager::OnUnitIteration(Unit * unit)
+void FeatureManager::OnUnitIteration(Unit* unit, Player * player, int playerIndex)
 {
 	for (Feature* feature : features)
 	{
-		feature->OnUnitIteration(unit);
+		feature->OnUnitIteration(unit, player, playerIndex);
 	}
 }

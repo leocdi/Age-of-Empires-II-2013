@@ -14,8 +14,8 @@ public:
 
 	virtual void OnDraw();
 	virtual void OnMenuMainWindow();
-	virtual void OnMenuPlayerTreenode(Player* player);
+	virtual void OnMenuPlayerTreenode(Player* player,int playerIndex);
 
-	virtual void OnPlayerIteration(Player* player);
-	virtual void OnUnitIteration(Unit* unit);
+	virtual void OnPlayerIteration(Player* player, int playerIndex);
+	virtual void OnUnitIteration(Unit* unit, Player* player, int playerIndex);
 };

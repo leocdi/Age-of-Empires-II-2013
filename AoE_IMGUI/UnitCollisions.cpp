@@ -36,16 +36,24 @@ void DrawBox(Unit* unit)
 	Renderer::Get()->RenderRect(ivOne, ivFour, ivTwo, ivThree, 0xff0000ff);
 }
 
-void UnitCollisions::OnUnitIteration(Unit* unit)
+void UnitCollisions::OnUnitIteration(Unit* unit, Player* player, int playerIndex)
 {
-	if (enabled)
+	if (playerEsp[playerIndex])
 	{
 		DrawBox(unit);
 	}
 }
 
-void UnitCollisions::OnMenuMainWindow()
+void UnitCollisions::OnMenuPlayerTreenode(Player * player, int playerIndex)
 {
-	ImGui::Checkbox("ESP", &enabled);
-	ImGui::Text("Gametime: %d", Engine::Get()->GetMain()->GameData->gameTime);
+	ImGui::Checkbox("ESP", &playerEsp[playerIndex]);
+
+	if (Input::Get()->WasKeyPressed(VK_F1))
+	{
+		enabled = !enabled;
+	}
+	if (Input::Get()->IsKeyDown(VK_F2))
+	{
+		enabled = !enabled;
+	}
 }

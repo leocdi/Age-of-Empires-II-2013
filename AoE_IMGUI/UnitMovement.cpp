@@ -23,7 +23,7 @@ void DrawDestination(Unit* unit)
 	}
 }
 
-void UnitMovement::OnUnitIteration(Unit* unit)
+void UnitMovement::OnUnitIteration(Unit* unit, Player* player, int playerIndex)
 {
 	if (enabled)
 	{

@@ -4,5 +4,5 @@
 
 class RessourceInformation : public Feature
 {
-	void OnMenuPlayerTreenode(Player* player);
+	void OnMenuPlayerTreenode(Player* player, int playerIndex);
 };

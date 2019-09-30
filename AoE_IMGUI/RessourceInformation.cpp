@@ -105,7 +105,7 @@ std::vector<Unit*> getIdleCivilianList(Player* player)
 	return idle;
 }
 
-void RessourceInformation::OnMenuPlayerTreenode(Player* player)
+void RessourceInformation::OnMenuPlayerTreenode(Player* player, int playerIndex)
 {
 	ImGui::Text("Player: %x", player);
 	ImGui::Text("Wood: %.f", player->Ressources->wood);

@@ -182,6 +182,7 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Feature.cpp" />
     <ClCompile Include="FeatureManager.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Maphack.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RessourceInformation.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="Feature.h" />
     <ClInclude Include="FeatureManager.h" />
     <ClInclude Include="Core.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Maphack.h" />
     <ClInclude Include="Offsets.h" />
     <ClInclude Include="Patternscaning.h" />

@@ -13,6 +13,7 @@
 #include "DetourHook.h"
 #include "Core.h"
 #include "FeatureManager.h"
+#include "Input.h"
 
 
 const char* windowName = "Age of Empires II: HD Edition"; 
@@ -64,8 +65,12 @@ HRESULT __stdcall Hooked_EndScene(IDirect3DDevice9 * pDevice) // Our hooked ends
 
 LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
-	if (true && ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
+	if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam))
+	{
 		return true;
+	}
+
+	Input::Get()->ProcessMessage(uMsg, wParam, lParam);
 
 	return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
 }

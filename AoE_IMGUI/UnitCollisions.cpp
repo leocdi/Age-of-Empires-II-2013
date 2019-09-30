@@ -3,6 +3,7 @@
 #include "Sdk.h"
 #include "Renderer.h"
 #include "Engine.h"
+#include "Input.h"
 
 
 void DrawBox(Unit* unit)
@@ -46,4 +47,5 @@ void UnitCollisions::OnUnitIteration(Unit* unit)
 void UnitCollisions::OnMenuMainWindow()
 {
 	ImGui::Checkbox("ESP", &enabled);
+	ImGui::Text("Gametime: %d", Engine::Get()->GetMain()->GameData->gameTime);
 }

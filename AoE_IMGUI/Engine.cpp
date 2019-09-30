@@ -55,6 +55,11 @@ Vector2 Engine::worldToScreen(Vector3 position)
 	return Vector2(screenXfinal - tile_width / 2, screenYfinal - tile_height);
 }
 
+Vector2 Engine::worldToScreen(Vector2 position)
+{
+	return Engine::worldToScreen(Vector3(position.x, 0, position.y));
+}
+
 Vector2 Engine::worldToScreen(Unit* unit)
 {
 	return worldToScreen(unit->vPos);

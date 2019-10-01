@@ -4,7 +4,7 @@
 
 
 
-enum EnumUnitDataClass
+enum class EnumUnitDataClass
 {
 	InvalidClass = -1,
 	Archer = 0,
@@ -71,7 +71,8 @@ enum EnumUnitDataClass
 	ControlledAnimal = 61
 };
 
-enum EnumUnitDataId
+
+enum class EnumUnitDataId
 {
 	FemaleIdleVillager = 293,
 	MaleShepherd = 592,
@@ -586,8 +587,7 @@ enum EnumUnitDataId
 	Macaw = 816,
 	Hawk = 96,
 	StormyDog = 862,
-	Flare = 274
-
+	Flare = 27
 };
 
 struct Vector4

@@ -25,4 +25,5 @@ public:
 	void OnMenuPlayerTreenode(Player* player, int playerIndex);
 	void OnPlayerIteration(Player* player, int playerIndex);
 	void OnUnitIteration(Unit* unit, Player * player, int playerIndex);
+	void OnNeutralUnit(Unit* unit);
 };

@@ -776,18 +776,19 @@ class ObjectManager
 {
 public:
 	char pad_0000[4]; //0x0000
-	class Unit **untis; //0x0004
+	class Unit** units; //0x0004
 	int32_t iObjectCount; //0x0008
 	char pad_000C[4]; //0x000C
 }; //Size: 0x0010
 
 class Unit
 {
+
 public:
 	char pad_0000[8]; //0x0000
 	int32_t iNetworkID; //0x0008
 	class UnitData *pUnitData; //0x000C
-	void *pOwner; //0x0010
+	Player *pOwner; //0x0010
 	void *currentGraphicPtr; //0x0014
 	void *currentGraphic2Ptr; //0x0018
 	char pad_001C[24]; //0x001C
@@ -840,6 +841,44 @@ public:
 	char pad_01D0[76]; //0x01D0
 	int16_t iQueuesize; //0x021C
 	char pad_021E[4]; //0x021E
+
+
+	void Select(Player* player)
+	{
+		typedef void(__thiscall * SelectUnit)(int32_t player, int32_t unit, int zeroOne);
+		static SelectUnit selectUnit = (SelectUnit)((DWORD)GetModuleHandle(NULL) + 0x354A20);
+		selectUnit((int32_t)player, (int32_t)this, 1);
+	}
+
+
+	void MoveTo(Vector2 pos, bool deselectAfterMove = true)
+	{
+		typedef void(__thiscall * MoveUnit)(int32_t player, int32_t unit, float x, float y);
+		static MoveUnit moveUnit = (MoveUnit)((DWORD)GetModuleHandle(NULL) + 0x33EBA0);
+
+		Select(this->pOwner);
+		moveUnit((int32_t)this->pOwner, NULL, pos.x, pos.y);
+
+		if (deselectAfterMove)
+		{
+			INPUT ip;
+			// Set up a generic keyboard event.
+			ip.type = INPUT_KEYBOARD;
+			ip.ki.wScan = 0; // hardware scan code for key
+			ip.ki.time = 0;
+			ip.ki.dwExtraInfo = 0;
+
+			// Press ESC
+			ip.ki.wVk = VK_ESCAPE; // virtual-key code for the "6" key
+			ip.ki.dwFlags = 0; // 0 for key press
+			SendInput(1, &ip, sizeof(INPUT));
+
+			// Release ESC
+			ip.ki.dwFlags = KEYEVENTF_KEYUP; // KEYEVENTF_KEYUP for key release
+			SendInput(1, &ip, sizeof(INPUT));
+		}
+	}
+
 }; //Size: 0x0222
 
 class UnitData

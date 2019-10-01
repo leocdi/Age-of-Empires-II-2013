@@ -59,12 +59,17 @@ void UnitCollisions::OnMenuPlayerTreenode(Player * player, int playerIndex)
 		}
 		ImGui::TreePop();
 	}
-	if (Input::Get()->WasKeyPressed(VK_F1))
+}
+
+void UnitCollisions::OnNeutralUnit(Unit * unit)
+{
+	if (gaiaEsp)
 	{
-		enabled = !enabled;
+		DrawBox(unit, 0xffffffff);
 	}
-	if (Input::Get()->IsKeyDown(VK_F2))
-	{
-		enabled = !enabled;
-	}
+}
+
+void UnitCollisions::OnMenuMainWindow()
+{
+	ImGui::Checkbox("GaiaESP", &gaiaEsp);
 }

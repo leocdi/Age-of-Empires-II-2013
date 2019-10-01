@@ -80,3 +80,11 @@ void FeatureManager::OnUnitIteration(Unit* unit, Player * player, int playerInde
 		feature->OnUnitIteration(unit, player, playerIndex);
 	}
 }
+
+void FeatureManager::OnNeutralUnit(Unit * unit)
+{
+	for (Feature* feature : features)
+	{
+		feature->OnNeutralUnit(unit);
+	}
+}

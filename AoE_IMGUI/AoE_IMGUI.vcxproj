@@ -163,6 +163,7 @@
     <ClCompile Include="..\ImGui\imgui_impl_dx9.cpp" />
     <ClCompile Include="..\ImGui\imgui_impl_win32.cpp" />
     <ClCompile Include="..\ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="Automation.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="DetourHook.cpp" />
     <ClCompile Include="Dllmain.cpp">
@@ -198,6 +199,7 @@
     <ClInclude Include="..\ImGui\imstb_rectpack.h" />
     <ClInclude Include="..\ImGui\imstb_textedit.h" />
     <ClInclude Include="..\ImGui\imstb_truetype.h" />
+    <ClInclude Include="Automation.h" />
     <ClInclude Include="Classes.h" />
     <ClInclude Include="DetourHook.h" />
     <ClInclude Include="Engine.h" />

@@ -51,6 +51,9 @@
     <ClCompile Include="Input.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
+    <ClCompile Include="Automation.cpp">
+      <Filter>Source Files\Features</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ImGui\imconfig.h">
@@ -121,6 +124,9 @@
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Header Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Automation.h">
+      <Filter>Header Files\Features</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

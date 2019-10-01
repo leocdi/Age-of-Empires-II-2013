@@ -39,7 +39,7 @@ Vector2 Engine::worldToScreen(Vector3 position)
 {
 	int tile_width = 96;
 	int tile_height = 96;
-	static BaseGameScreen* baseGameSreen = reinterpret_cast<BaseGameScreen*>((DWORD)GetModuleHandle(NULL) + Offsets::baseGameScreen);
+	static BaseGameScreen* baseGameSreen = reinterpret_cast<BaseGameScreen*>(base + Offsets::baseGameScreen);
 
 	float xDelta = position.x - baseGameSreen->gameScreenPtr->mainViewPtr->PosScreen.x;
 	float yDelta = position.z - baseGameSreen->gameScreenPtr->mainViewPtr->PosScreen.y;
@@ -63,4 +63,12 @@ Vector2 Engine::worldToScreen(Vector2 position)
 Vector2 Engine::worldToScreen(Unit* unit)
 {
 	return worldToScreen(unit->vPos);
+}
+
+void Engine::SendChatMessage(char * message)
+{
+	typedef void(__stdcall * SendChatMessage)(char* message);
+	static SendChatMessage sendChatMessage = (SendChatMessage)(base + 0x286A40);
+
+	sendChatMessage(message);
 }

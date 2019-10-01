@@ -19,6 +19,7 @@
 #include "UnitMovement.h"
 #include "Maphack.h"
 #include "RessourceInformation.h"
+#include "Automation.h"
 
 Core::Core()
 {
@@ -26,6 +27,7 @@ Core::Core()
 	FeatureManager::Get()->registerFeature(new UnitMovement());
 	FeatureManager::Get()->registerFeature(new Maphack());
 	FeatureManager::Get()->registerFeature(new RessourceInformation());
+	FeatureManager::Get()->registerFeature(new Automation());
 
 	FeatureManager::Get()->OnInitialise();
 }
@@ -42,7 +44,7 @@ void createPlayerTreeNode(Player* player, int playerIndex)
 			int calavaryCount = 0;
 			for (int i = 0; i < player->objectManager->iObjectCount; i++)
 			{
-				Unit* unit = player->objectManager->untis[i];
+				Unit* unit = player->objectManager->units[i];
 				if (!unit) { continue; }
 
 				if (unit->pOwner == player)
@@ -55,11 +57,11 @@ void createPlayerTreeNode(Player* player, int playerIndex)
 					{
 						buildingCount++;
 					}
-					if (unit->pUnitData->Class == (int16_t)(int)EnumUnitDataClass::Infantry)
+					if (unit->pUnitData->Class == (int16_t)EnumUnitDataClass::Infantry)
 					{
 						infantryCount++;
 					}
-					if (unit->pUnitData->Class ==  (int16_t)(int)EnumUnitDataClass::Cavalry)
+					if (unit->pUnitData->Class ==  (int16_t)EnumUnitDataClass::Cavalry)
 					{
 						calavaryCount++;
 					}
@@ -88,6 +90,21 @@ void Core::OnEndscene()
 
 	Renderer::Get()->BeginScene();
 	FeatureManager::Get()->OnDraw();
+	Player* gaiaPlayer = *(Player**)(playerArray);
+
+	if (gaiaPlayer)
+	{
+		for (int i = 0; i < gaiaPlayer->objectManager->iObjectCount; i++)
+		{
+			Unit* unit = gaiaPlayer->objectManager->units[i];
+			if (!unit)
+			{
+				continue;
+			}
+			FeatureManager::Get()->OnNeutralUnit(unit);
+		}
+	}
+
 	for (int i = 0; i < totalPlayers; i++)
 	{
 	
@@ -99,7 +116,7 @@ void Core::OnEndscene()
 		FeatureManager::Get()->OnPlayerIteration(player, i);
 		for (int j = 0; j < player->objectManager->iObjectCount; j++)
 		{
-			Unit* unit = player->objectManager->untis[j];
+			Unit* unit = player->objectManager->units[j];
 			if (!unit)
 			{
 				continue;

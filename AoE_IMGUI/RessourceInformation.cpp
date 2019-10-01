@@ -27,7 +27,7 @@ std::vector<Unit*> getCivilianList(Player* player)
 		if (unit->pOwner != player)
 			continue;
 
-		if (unit->pUnitData->Class != EnumUnitDataClass::Civilian)
+		if (unit->pUnitData->Class != (int16_t)EnumUnitDataClass::Civilian)
 			continue;
 
 		civilian.push_back(unit);

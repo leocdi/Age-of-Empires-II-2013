@@ -51,15 +51,15 @@ void createPlayerTreeNode(Player* player, int playerIndex)
 					ImGui::SameLine();
 					ImGui::Text("%s", unit->pUnitData->name);
 
-					if (unit->pUnitData->Class == EnumUnitDataClass::Building)
+					if (unit->pUnitData->Class == (int16_t)EnumUnitDataClass::Building)
 					{
 						buildingCount++;
 					}
-					if (unit->pUnitData->Class == EnumUnitDataClass::Infantry)
+					if (unit->pUnitData->Class == (int16_t)(int)EnumUnitDataClass::Infantry)
 					{
 						infantryCount++;
 					}
-					if (unit->pUnitData->Class == EnumUnitDataClass::Cavalry)
+					if (unit->pUnitData->Class ==  (int16_t)(int)EnumUnitDataClass::Cavalry)
 					{
 						calavaryCount++;
 					}

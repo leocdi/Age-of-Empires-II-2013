@@ -78,11 +78,25 @@ void createPlayerTreeNode(Player* player, int playerIndex)
 
 void Core::OnEndscene()
 {
-	static Main* main = Engine::Get()->GetMain();
-	static int totalPlayers = Engine::Get()->GetTotalPlayers();
+	Main* main = Engine::Get()->GetMain();
+	if (!main)
+	{
+		return;
+	}
 
-	static GameData* gameData = main->GameData;
-	static PlayerArray* playerArray = gameData->pPlayerArray;
+
+	GameData* gameData = main->GameData;
+	if (!gameData)
+	{
+		return;
+	}
+	PlayerArray* playerArray = gameData->pPlayerArray;
+	if (!gameData)
+	{
+		return;
+
+	}
+	int totalPlayers = Engine::Get()->GetTotalPlayers();
 
 
 	static bool openOverlay = true;

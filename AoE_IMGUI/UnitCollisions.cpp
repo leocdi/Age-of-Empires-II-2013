@@ -65,7 +65,24 @@ void UnitCollisions::OnNeutralUnit(Unit * unit)
 {
 	if (gaiaEsp)
 	{
-		DrawBox(unit, 0xffffffff);
+		//DrawBox(unit, 0xffffffff);
+		std::string unitName = unit->pUnitData->name;
+		Vector2 screenPos = Engine::Get()->worldToScreen(unit);
+		if (strcmp(unitName.c_str(), "BOARX") == 0)
+		{
+			Renderer::Get()->RenderCircleFilled(ImVec2(screenPos.x, screenPos.y), 40, 0x4000ff00);
+			Renderer::Get()->RenderText(unitName, ImVec2(screenPos.x, screenPos.y), 16, 0xffffffff);
+		}
+		if (strcmp(unitName.c_str(), "SHEEPG") == 0)
+		{
+			Renderer::Get()->RenderCircleFilled(ImVec2(screenPos.x, screenPos.y), 40, 0x400000ff);
+			Renderer::Get()->RenderText(unitName, ImVec2(screenPos.x, screenPos.y), 16, 0xffffffff);
+		}
+		if (strcmp(unitName.c_str(), "WOLFX") == 0)
+		{
+			Renderer::Get()->RenderCircleFilled(ImVec2(screenPos.x, screenPos.y), 40, 0x40ff0000);
+			Renderer::Get()->RenderText(unitName, ImVec2(screenPos.x, screenPos.y), 16, 0xffffffff);
+		}
 	}
 }
 

@@ -28,6 +28,7 @@ typedef LRESULT(CALLBACK* WNDPROC)(HWND, UINT, WPARAM, LPARAM);
 
 DetourHook endsceneHook = DetourHook();
 DetourHook resetHook = DetourHook();
+DetourHook gameTimeHook = DetourHook();
 
 
 
@@ -98,6 +99,23 @@ VOID WINAPI OnDllDetach()
 #endif
 }
 
+//void testFunc()
+//{
+//	printf("Hooked\n");
+//}
+//
+//void __declspec(naked) GametimeIncreasedHook()
+//{
+//	__asm 
+//	{
+//		pushad
+//		pushfd
+//
+//		call testFunc
+//		popfd
+//		popad
+//	}
+//}
 
 DWORD WINAPI MainThread(LPVOID param)
 {
@@ -130,6 +148,7 @@ DWORD WINAPI MainThread(LPVOID param)
 		Device->Release() , Device = nullptr;
 		
 	oEndScene = (f_EndScene)endsceneHook.Hook((PBYTE)pVTable[42], (PBYTE)Hooked_EndScene, 7);
+	//gameTimeHook.Hook((PBYTE)(DWORD)GetModuleHandle(NULL) + 0x338720, (PBYTE)GametimeIncreasedHook, 5);
 
 	while (!(GetAsyncKeyState(VK_DELETE) & 0x8000))
 	{
@@ -140,6 +159,7 @@ DWORD WINAPI MainThread(LPVOID param)
 	//Restore hooks and end thread
 	(WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)oWndProc);
 	endsceneHook.Unhook();
+	gameTimeHook.Unhook();
 	FreeLibraryAndExitThread((HMODULE)param, 0);
 	return false; 
 }

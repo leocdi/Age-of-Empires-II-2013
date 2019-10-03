@@ -851,7 +851,7 @@ public:
 	}
 
 
-	void MoveTo(Vector2 pos, bool deselectAfterMove = true)
+	void MoveTo(Vector2 pos, bool deselectAfterMove = false)
 	{
 		typedef void(__thiscall * MoveUnit)(int32_t player, int32_t unit, float x, float y);
 		static MoveUnit moveUnit = (MoveUnit)((DWORD)GetModuleHandle(NULL) + 0x33EBA0);

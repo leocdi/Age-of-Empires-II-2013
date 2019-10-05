@@ -185,8 +185,10 @@
     <ClCompile Include="FeatureManager.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Maphack.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="RessourceInformation.cpp" />
+    <ClCompile Include="Unit.cpp" />
     <ClCompile Include="UnitCollisions.cpp" />
     <ClCompile Include="UnitMovement.cpp" />
   </ItemGroup>
@@ -208,11 +210,15 @@
     <ClInclude Include="Core.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Maphack.h" />
+    <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Offsets.h" />
     <ClInclude Include="Patternscaning.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="RessourceInformation.h" />
+    <ClInclude Include="Ressources.h" />
     <ClInclude Include="Sdk.h" />
+    <ClInclude Include="Unit.h" />
     <ClInclude Include="UnitCollisions.h" />
     <ClInclude Include="UnitMovement.h" />
   </ItemGroup>

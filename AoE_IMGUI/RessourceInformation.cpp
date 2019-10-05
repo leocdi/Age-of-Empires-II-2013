@@ -19,7 +19,7 @@ std::vector<Unit*> getCivilianList(Player* player)
 
 	for (int i = 0; i < player->objectManager->iObjectCount; i++)
 	{
-		Unit* unit = player->objectManager->untis[i];
+		Unit* unit = player->objectManager->units[i];
 
 		if (!unit)
 			continue;

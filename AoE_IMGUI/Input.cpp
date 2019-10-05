@@ -128,7 +128,8 @@ bool Input::IsKeyDown(std::uint32_t vk)
 
 bool Input::WasKeyPressed(std::uint32_t vk)
 {
-	if (m_iKeyMap[vk] == KeyState::Pressed) {
+	if (m_iKeyMap[vk] == KeyState::Pressed) 
+	{
 		m_iKeyMap[vk] = KeyState::Up;
 		return true;
 	}

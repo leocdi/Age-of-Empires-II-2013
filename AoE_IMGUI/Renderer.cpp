@@ -63,7 +63,7 @@ void Renderer::RenderText(const std::string& text, const ImVec2& position, float
 	}
 	else
 	{
-		window->DrawList->AddText(NULL, 0, position, ImGui::GetColorU32({ 0.0f, 0.0f, 0.0f, a / 255.0f }), text.c_str());
+		window->DrawList->AddText(NULL, 0, position, ImGui::GetColorU32({ r,g,b,a}), text.c_str());
 	}
 }
 

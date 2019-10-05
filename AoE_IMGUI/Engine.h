@@ -28,4 +28,7 @@ public:
 	Vector2 worldToScreen(Vector3 position);
 	Vector2 worldToScreen(Vector2 position);
 	Vector2 worldToScreen(Unit* unit);
+
+	
+	void SendChatMessage(char* message);
 };

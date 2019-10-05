@@ -59,12 +59,34 @@ void UnitCollisions::OnMenuPlayerTreenode(Player * player, int playerIndex)
 		}
 		ImGui::TreePop();
 	}
-	if (Input::Get()->WasKeyPressed(VK_F1))
+}
+
+void UnitCollisions::OnNeutralUnit(Unit * unit)
+{
+	if (gaiaEsp)
 	{
-		enabled = !enabled;
+		//DrawBox(unit, 0xffffffff);
+		std::string unitName = unit->pUnitData->name;
+		Vector2 screenPos = Engine::Get()->worldToScreen(unit);
+		if (strcmp(unitName.c_str(), "BOARX") == 0)
+		{
+			Renderer::Get()->RenderCircleFilled(ImVec2(screenPos.x, screenPos.y), 40, 0x4000ff00);
+			Renderer::Get()->RenderText(unitName, ImVec2(screenPos.x, screenPos.y), 16, 0xffffffff);
+		}
+		if (strcmp(unitName.c_str(), "SHEEPG") == 0)
+		{
+			Renderer::Get()->RenderCircleFilled(ImVec2(screenPos.x, screenPos.y), 40, 0x400000ff);
+			Renderer::Get()->RenderText(unitName, ImVec2(screenPos.x, screenPos.y), 16, 0xffffffff);
+		}
+		if (strcmp(unitName.c_str(), "WOLFX") == 0)
+		{
+			Renderer::Get()->RenderCircleFilled(ImVec2(screenPos.x, screenPos.y), 40, 0x40ff0000);
+			Renderer::Get()->RenderText(unitName, ImVec2(screenPos.x, screenPos.y), 16, 0xffffffff);
+		}
 	}
-	if (Input::Get()->IsKeyDown(VK_F2))
-	{
-		enabled = !enabled;
-	}
+}
+
+void UnitCollisions::OnMenuMainWindow()
+{
+	ImGui::Checkbox("GaiaESP", &gaiaEsp);
 }

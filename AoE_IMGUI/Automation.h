@@ -3,6 +3,7 @@
 
 class Automation : public Feature
 {
+	bool playerAuto[8] = { true,false,false,false,false,false,false,false };
 
 	void OnInitialise();
 
